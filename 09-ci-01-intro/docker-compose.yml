@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  jira:
+    image: atlassian/jira-software:latest
+    container_name: jira
+    ports:
+      - '8080:8080'
+    depends_on:
+      - postgres
+    environment:
+      - ATL_JIRA_HOME=/var/atlassian/jira
+      - JVM_MINIMUM_MEMORY=2g
+      - JVM_MAXIMUM_MEMORY=3g
+      - DB_TYPE=postgres72
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=jiradb2
+      - DB_USER=jira
+      - DB_PASSWORD=jirapassword
+    volumes:
+      - jira_data:/var/atlassian/jira
+
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    environment:
+      POSTGRES_DB: jiradb2
+      POSTGRES_USER: jira
+      POSTGRES_PASSWORD: jirapassword
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  jira_data:
+    driver: local
+  postgres_data:
+    driver: local
