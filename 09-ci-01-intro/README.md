@@ -1,4 +1,4 @@
-# Домашнее задание к занятию 7 «Жизненный цикл ПО»
+# Домашнее задание к занятию 7 «Жизненный цикл ПО» - Курапов Антон
 
 ## Подготовка к выполнению
 
@@ -19,6 +19,8 @@
 6. On test -> On fix, Done.
 7. Done -> Closed, Open.
 
+![alt text](https://github.com/AntonKurapov66/mnt-homeworks/blob/MNT-video/09-ci-01-intro/img/01_1.PNG)
+
 Остальные задачи должны проходить по упрощённому workflow:
 
 1. Open -> On develop.
@@ -27,19 +29,9 @@
 4. On test -> On develop, Done.
 5. Done -> Closed, Open.
 
-**Что нужно сделать**
+![alt text](https://github.com/AntonKurapov66/mnt-homeworks/blob/MNT-video/09-ci-01-intro/img/01_2.PNG)
 
-1. Создайте задачу с типом bug, попытайтесь провести его по всему workflow до Done. 
-1. Создайте задачу с типом epic, к ней привяжите несколько задач с типом task, проведите их по всему workflow до Done. 
-1. При проведении обеих задач по статусам используйте kanban. 
-1. Верните задачи в статус Open.
-1. Перейдите в Scrum, запланируйте новый спринт, состоящий из задач эпика и одного бага, стартуйте спринт, проведите задачи до состояния Closed. Закройте спринт.
-2. Если всё отработалось в рамках ожидания — выгрузите схемы workflow для импорта в XML. Файлы с workflow и скриншоты workflow приложите к решению задания.
+![alt text](https://github.com/AntonKurapov66/mnt-homeworks/blob/MNT-video/09-ci-01-intro/img/01_3.PNG)
 
----
-
-### Как оформить решение задания
-
-Выполненное домашнее задание пришлите в виде ссылки на .md-файл в вашем репозитории.
-
----
+xml-файлы лежат в директории: 
+https://github.com/AntonKurapov66/mnt-homeworks/blob/MNT-video/09-ci-01-intro/img
