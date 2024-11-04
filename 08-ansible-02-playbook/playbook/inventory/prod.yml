@@ -3,8 +3,10 @@ clickhouse:
   hosts:
     clickhouse-01:
       ansible_host: localhost
+      ansible_user: admin
 
 vector:
   hosts:
     vector-01:
       ansible_host: localhost
+      ansible_user: admin
