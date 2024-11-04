@@ -1,4 +1,4 @@
-# Домашнее задание к занятию 2 «Работа с Playbook»
+# Домашнее задание к занятию 2 «Работа с Playbook» - Курапов Антон
 
 ## Подготовка к выполнению
 
@@ -19,6 +19,20 @@
 8. Повторно запустите playbook с флагом `--diff` и убедитесь, что playbook идемпотентен.
 9. Подготовьте README.md-файл по своему playbook. В нём должно быть описано: что делает playbook, какие у него есть параметры и теги. Пример качественной документации ansible playbook по [ссылке](https://github.com/opensearch-project/ansible-playbook). Так же приложите скриншоты выполнения заданий №5-8
 10. Готовый playbook выложите в свой репозиторий, поставьте тег `08-ansible-02-playbook` на фиксирующий коммит, в ответ предоставьте ссылку на него.
+
+При выполнении не получилось поднять на локальном хосте по следующей ошибке 
+
+![alt text](https://github.com/AntonKurapov66/mnt-homeworks/blob/MNT-video/08-ansible-02-playbook/img/00.PNG)
+Исправить ошибку не удалось, поэтому запускал по своему плейбуку - https://github.com/AntonKurapov66/mnt-homeworks/blob/MNT-video/08-ansible-02-playbook/playbook/site-new.yml 
+
+--check 
+![alt text](https://github.com/AntonKurapov66/mnt-homeworks/blob/MNT-video/08-ansible-02-playbook/img/01.PNG)
+
+--diff
+![alt text](https://github.com/AntonKurapov66/mnt-homeworks/blob/MNT-video/08-ansible-02-playbook/img/02.PNG)
+
+--diff повторно 
+![alt text](https://github.com/AntonKurapov66/mnt-homeworks/blob/MNT-video/08-ansible-02-playbook/img/03.PNG)
 
 ---
 
