@@ -2,7 +2,9 @@
 clickhouse:
   hosts:
     clickhouse-01:
-      ansible_host: 89.169.140.167
-      ansible_connection: ssh
-      ansible_user: admin
-      ansible_python_interpreter: python3
+      ansible_host: localhost
+
+vector:
+  hosts:
+    vector-01:
+      ansible_host: localhost
