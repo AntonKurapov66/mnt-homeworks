@@ -1,0 +1,47 @@
+---
+- name: Install clickhouse
+  hosts: clickhouse
+  roles:
+    - role: clickhouse-role
+
+- name: Install vector
+  hosts: vector
+  roles:
+    - role: vector-role
+
+- name: Install lighthouse
+  hosts: lighthouse
+
+  handlers:
+    - name: Start nginx service
+      become: true
+      ansible.builtin.service:
+        name: nginx
+        state: restarted
+  pre_tasks:
+    - name: Install Nginx on Fedora
+      dnf:
+        name: nginx
+        state: present
+      notify: Start nginx service
+
+    - name: Create Nginx config
+      template:
+        src: templates/nginx.conf.j2
+        dest: /etc/nginx/nginx.conf
+        mode: 0644
+      notify: Start nginx service
+
+    - name: Check nginx configuration
+      command: nginx -t
+      register: nginx_test
+      failed_when: nginx_test.rc != 0
+      changed_when: false
+
+  roles:
+    - role: lighthouse-role
+
+  post_tasks:
+    - name: Show connect URL lighthouse
+      debug:
+        msg: "http://{{ ansible_host }}/#http://{{ hostvars['clickhouse-01'].ansible_host }}:8123/?user={{ clickhouse_user }}"

@@ -1,0 +1,23 @@
+all:
+  hosts:
+    localhost:
+      ansible_connection: local
+      ansible_host: 127.0.0.1
+
+clickhouse:
+  hosts:
+    clickhouse-01:
+      ansible_connection: local
+      ansible_host: 127.0.0.1
+
+vector:
+  hosts:
+    vector-01:
+      ansible_connection: local
+      ansible_host: 127.0.0.1
+
+lighthouse:
+  hosts:
+    lighthouse-01:
+      ansible_connection: local
+      ansible_host: 127.0.0.1
