@@ -1,4 +1,4 @@
-# Домашнее задание к занятию 4 «Работа с roles»
+# Домашнее задание к занятию 4 «Работа с roles» - Курапов Антон
 
 ## Подготовка к выполнению
 
@@ -39,8 +39,76 @@
 
 ---
 
-### Как оформить решение задания
+### Решение
 
-Выполненное домашнее задание пришлите в виде ссылки на .md-файл в вашем репозитории.
+добавил роли в репозиторий 
+
+![alt text](https://github.com/AntonKurapov66/mnt-homeworks/blob/MNT-video/08-ansible-04-role/img/01.PNG)
+
+раскидал по ролям все таски 
+
+в плей-файле оставил только вызов ролей и запуск nginx 
+```yaml
+---
+- name: Install clickhouse
+  hosts: clickhouse
+  roles:
+    - role: clickhouse-role
+
+- name: Install vector
+  hosts: vector
+  roles:
+    - role: vector-role
+
+- name: Install lighthouse
+  hosts: lighthouse
+
+  handlers:
+    - name: Start nginx service
+      become: true
+      ansible.builtin.service:
+        name: nginx
+        state: restarted
+  pre_tasks:
+    - name: Install Nginx on Fedora
+      dnf:
+        name: nginx
+        state: present
+      notify: Start nginx service
+
+    - name: Create Nginx config
+      template:
+        src: templates/nginx.conf.j2
+        dest: /etc/nginx/nginx.conf
+        mode: 0644
+      notify: Start nginx service
+
+    - name: Check nginx configuration
+      command: nginx -t
+      register: nginx_test
+      failed_when: nginx_test.rc != 0
+      changed_when: false
+
+  roles:
+    - role: lighthouse-role
+
+  post_tasks:
+    - name: Show connect URL lighthouse
+      debug:
+        msg: "http://{{ ansible_host }}/#http://{{ hostvars['clickhouse-01'].ansible_host }}:8123/?user={{ clickhouse_user }}"
+```
+
+Запуск и выполнение тасок : 
+![alt text](https://github.com/AntonKurapov66/mnt-homeworks/blob/MNT-video/08-ansible-04-role/img/01_0.PNG)
+
+![alt text](https://github.com/AntonKurapov66/mnt-homeworks/blob/MNT-video/08-ansible-04-role/img/01_1.PNG)
+
+![alt text](https://github.com/AntonKurapov66/mnt-homeworks/blob/MNT-video/08-ansible-04-role/img/01_2.PNG)
+
+[Vector](https://github.com/AntonKurapov66/mnt-homeworks/tree/MNT-video/08-ansible-04-role/vector-role)
+
+[Lighthouse](https://github.com/AntonKurapov66/mnt-homeworks/tree/MNT-video/08-ansible-04-role/lighthouse-role)
+
+[Clickhouse](https://github.com/AntonKurapov66/mnt-homeworks/tree/MNT-video/08-ansible-04-role/clickhouse-role)
 
 ---
